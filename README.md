@@ -6,7 +6,7 @@
 - Create consumer: `docker exec -it <container-id> /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning`
 
 
-## Some things
+## Basic things about Kafka
 
 - Kafka runs as a cluster of servers (called brokers). We use Docker to simplify local setup.
     - Kafka requires Zookeeper (for coordination), though newer versions are moving toward KRaft (no Zookeeper).
@@ -16,3 +16,17 @@
 - A producer can produce records on these topics
 - The consumer can then consume whatever the produced produces
 - Kafka is asynchronous and durable — messages are stored until consumed or expired.
+
+
+# Why use Kafka
+
+- Decoupling of systems
+- Reliable message delivery:
+    - If consumer goes down, it can restart from the same point it left off when it is back online.
+    - Kafka handles retries and delivery gurantees
+- Replayability of data:
+    - You can go through messages from the beginning
+- Scaling without tight coupling:
+    - If more consumers are needed in the future
+- Async:
+    - The sending system doesn't need to wait for a response before moving on to the next task
