@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181            # ZK connection string :contentReference[oaicite:4]{index=4}
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092           # Bind on all interfaces :contentReference[oaicite:5]{index=5}
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092  # Advertise to clients :contentReference[oaicite:6]{index=6}
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
