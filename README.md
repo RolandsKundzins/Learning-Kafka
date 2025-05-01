@@ -1,4 +1,20 @@
-# Learning Kafka
+# Learning Kafka using Python and Docker
+
+- This is kind of a refresher as I hadn't built Kafka producer/consumer from ground up - just used them.
+
+## Starting project
+- Clone this repo
+- Start Docker Desktop and run:
+    ```
+        docker compose up --build
+    ```
+- Wait for up to a minute. You should see:
+    - Producer writing to terminal (or logs) "Delivered: ..."
+    - Consumer later writing to terminal "Received: ..."
+    - There might be delay between these
+
+
+### The manual way to start Kafka using command prompt (Windows) - without Python
 
 - Run docker: `docker compose up`
 - Create topic: `docker exec -it <container-id> /opt/kafka/bin/kafka-topics.sh --create --topic test --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1`
